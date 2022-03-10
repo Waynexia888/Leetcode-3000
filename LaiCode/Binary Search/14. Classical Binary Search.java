@@ -1,4 +1,5 @@
-// Given a target integer T and an integer array A sorted in ascending order, find the index i such that A[i] == T or return -1 if there is no such index.
+// Given a target integer T and an integer array A sorted in ascending order, 
+//find the index i such that A[i] == T or return -1 if there is no such index.
 
 // Assumptions
 
@@ -41,5 +42,5 @@ public class Solution {
     }
 }
 
-// time: O(nlogn)
+// time: O(logn)
 // space: O(1)
