@@ -122,7 +122,7 @@ public class MinStack {
 
     /*
      * @return: An integer
-     */
+     */ 
     public int min() {
         // write your code here
         return stack.peek()[1];
