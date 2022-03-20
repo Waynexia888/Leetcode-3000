@@ -111,3 +111,5 @@ public class Stack {
         return queue1.isEmpty();
     }
 }
+
+// time: top() & pop() => O(n); push() & isEmpty() => O(1)
