@@ -76,3 +76,70 @@ public class Solution {
         return new Info(isBST, max, min);
     }
 }
+
+//----------------------上面方法简写的版本---------------------------------------
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+class Info {
+    boolean isBST;
+    int max, min;
+    public Info(boolean isBST, int max, int min) {
+        this.isBST = isBST;
+        this.max = max;
+        this.min = min;
+    }
+}
+
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: True if the binary tree is BST, or false
+     */
+    public boolean isValidBST(TreeNode root) {
+        // write your code here
+        if (root == null) {
+            return true;
+        }
+        return process(root).isBST;
+    }
+
+    private Info process(TreeNode root) {
+        if (root == null) {
+            return null;  // 在上游中去处理为null的情况
+        }
+
+        Info leftInfo = process(root.left);
+        Info rightInfo = process(root.right);
+
+        int max = root.val;
+        int min = root.val;
+        if (leftInfo != null) {
+            max = Math.max(max, leftInfo.max);
+            min = Math.min(min, leftInfo.min);
+        }
+        if (rightInfo != null) {
+            max = Math.max(max, rightInfo.max);
+            min = Math.min(min, rightInfo.min);
+        }
+
+        boolean isBST = true;
+        if (leftInfo != null && (!leftInfo.isBST || leftInfo.max >= root.val)) {
+            isBST = false;
+        }
+        if (rightInfo != null && (!rightInfo.isBST || rightInfo.min <= root.val)) {
+            isBST = false;
+        }
+
+        return new Info(isBST, max, min);
+    }
+}
